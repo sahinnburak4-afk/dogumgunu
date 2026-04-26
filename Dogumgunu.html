@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>İyi ki Doğdun Yaren 🎉</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* START SCREEN */
+#startScreen{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#ff4b7d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10;
+}
+
+#startBtn{
+    padding:20px 40px;
+    font-size:24px;
+    border:none;
+    border-radius:15px;
+    background:white;
+    color:#ff4b7d;
+    cursor:pointer;
+}
+
+/* MAIN */
+#main{
+    display:none;
+    margin-top:40px;
+}
+
+/* FOTO */
+img{
+    width:220px;
+    height:220px;
+    object-fit:cover;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+/* CAKE */
+.cake{
+    position:relative;
+    width:220px;
+    margin:40px auto;
+}
+
+/* katlar */
+.layer{
+    width:220px;
+    height:60px;
+    border-radius:15px;
+    margin:5px auto;
+    box-shadow:0 5px 10px rgba(0,0,0,0.2);
+}
+
+.layer1{background:#ffb6c1;}
+.layer2{background:#ff8da1;width:200px;margin-left:10px;}
+.layer3{background:#ff6f91;width:180px;margin-left:20px;}
+
+/* mumlar */
+.candles{
+    position:absolute;
+    top:-50px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:12px;
+}
+
+.candle{
+    width:8px;
+    height:35px;
+    background:white;
+    border-radius:3px;
+    position:relative;
+}
+
+.flame{
+    width:10px;
+    height:12px;
+    background:radial-gradient(circle, orange, red);
+    border-radius:50%;
+    position:absolute;
+    top:-12px;
+    left:-1px;
+    animation:flicker 0.2s infinite alternate;
+}
+
+@keyframes flicker{
+    from{transform:scale(1);}
+    to{transform:scale(1.2);}
+}
+
+/* BUTTON */
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* CONFETTI */
+.confetti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    background:white;
+    top:-10px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{transform:translateY(100vh) rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+    <button id="startBtn" onclick="startSite()">BAŞLAT 🎶</button>
+</div>
+
+<div id="main">
+
+<h1>İyi ki Doğdun Yaren 🎂</h1>
+
+<p>İyi ki doğdun Yaren 🎂
+Hayatına dokunan herkesin yüzünde bir tebessüm bırakan o güzel enerjin hiç bitmesin.
+Umarım bu yıl senin yılın olur her şey tam istediğin gibi gider
+Nice mutlu yıllara 🥳 💖</p>
+
+<img src="fotooo.jpg">
+
+<div class="cake">
+
+    <div class="layer layer1"></div>
+    <div class="layer layer2"></div>
+    <div class="layer layer3"></div>
+
+    <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+    </div>
+
+</div>
+
+<button onclick="blow()">Üfle 🎉</button>
+
+</div>
+
+<audio id="music">
+<source src="dogumgunu.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function startSite(){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("main").style.display="block";
+    document.getElementById("music").play();
+    confetti();
+}
+
+function blow(){
+    document.querySelectorAll(".flame").forEach(f=>{
+        f.style.opacity="0";
+    });
+    confetti();
+}
+
+function confetti(){
+    for(let i=0;i<40;i++){
+        let c=document.createElement("div");
+        c.classList.add("confetti");
+        c.style.left=Math.random()*100+"vw";
+        c.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(c);
+    }
+}
+
+</script>
+
+</body>
+</html>
